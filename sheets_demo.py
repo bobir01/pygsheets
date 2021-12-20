@@ -86,3 +86,4 @@ info+=f"department {data[5]}\n"
 info +=f"absences {data[6]}\n"
 
 print(info)
+
