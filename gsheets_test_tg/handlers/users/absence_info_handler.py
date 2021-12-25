@@ -1,7 +1,7 @@
 
 from aiogram.dispatcher.storage import FSMContext
 from aiogram.types.reply_keyboard import ReplyKeyboardRemove
-
+import pickle
 from Get_sheets import get_sheets, get_sheets_by
 from data.config import ADMINS
 from keyboards.default.freshman_subjects import freshman_menu
@@ -41,6 +41,9 @@ async def get_suject(msg:Message, state:FSMContext):
         if data:
             await msg.answer(f"<code>{data}</code>", reply_markup=ReplyKeyboardRemove())
             await state.set_state("student_id")
+        with open('token_sheets_v4.pickle', 'rb') as token:
+            cred = pickle.load(token)
+            print(cred)
     except Exception as e:
         print(e)
         await bot.send_message(chat_id=ADMINS[0],text=f"{e}")
